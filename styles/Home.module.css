@@ -1,16 +1,16 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   padding: 2rem;
   min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .description {
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 0.85rem;
   max-width: var(--max-width);
   width: 100%;
@@ -97,7 +97,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -125,7 +125,7 @@
 
 .thirteen::before,
 .thirteen::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
 }
