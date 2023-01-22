@@ -1,26 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import client from "../client";
 import groq from "groq";
-import {
-  Key,
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-} from "react";
+import { Post } from "../types";
+import Nav from "../components/Nav";
+import Link from "next/link";
+import Footer from "../components/Footer";
+import { urlFor } from "../utils";
 
-import imageUrlBuilder from "@sanity/image-url";
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source);
-}
-
-const inter = Inter({ subsets: ["latin"] });
-
-const Home = ({ posts }) => {
+const Home = ({ posts }: { posts: Post[] }) => {
   return (
     <>
       <Head>
@@ -29,109 +18,67 @@ const Home = ({ posts }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <h1 className="text-3xl font-normal">Adventures & Code </h1>
-          <div className="flex gap-8">
-            <a href="/" target="_blank" rel="noopener noreferrer">
-              home
-            </a>
-            {/* <a href="/posts" target="_blank" rel="noopener noreferrer">
-              posts
-            </a> */}
-            <a href="/about" target="_blank" rel="noopener noreferrer">
-              about
-            </a>
-          </div>
-        </div>
-
-        <div className="flex justify-between my-10 relative h-[800px]">
-          <div className="w-3/6 h-full relative">
+      <main className={"max-w-screen-xl m-auto px-6 pt-10 pb-20"}>
+        <Nav />
+        <div className="flex flex-col lg:flex-row justify-center lg:justify-between my-10 relative h-[900px] lg:h-[700px]">
+          <div className="w-full lg:w-3/6 h-full relative">
             <Image
               src={"/mia.jpeg"}
               alt="Picture of Mia hiking in Arizona"
               fill
               sizes={"100vh"}
               style={{ objectFit: "contain" }}
+              priority={true}
+              className="rounded"
             />
           </div>
-          <div className="w-3/6 ml-5 my-6 flex flex-col items-end justify-center text-end">
+          <div className="w-full lg:w-3/6 md:px-6 my-10 lg:ml-5 lg:my-6 flex flex-col lg:items-end justify-center lg:text-end">
             <p className="text-3xl font-bold">Hi! My name is Mia.</p>
             <p className="text-3xl mt-2">Software Engineer, Adventure Seeker</p>
-            <p className=" mt-2">
-              I'm a self-taught Software Engineer with more than 3 years of
+            <p className="mt-2">
+              I&apos;m a self-taught Software Engineer with more than 3 years of
               experience in design and frontend development.{" "}
             </p>
             <p className="mt-2">
-              I'm passionate building tools on the web and sharing my learning
-              journey.
+              I&apos;m passionate building tools on the web and sharing my
+              learning journey.
             </p>
             <p className="mt-2">
-              When I'm not building new features or fixing bugs, you'll likely
-              find me outside skiing, hiking, or traveling.{" "}
+              When I&apos;m not building new features or fixing bugs,
+              you&apos;ll likely find me outside skiing, hiking, or traveling.{" "}
             </p>
           </div>
         </div>
 
         <h1 className="text-3xl font-bold">recent posts</h1>
-        <div className="flex justify-between mt-4">
-          {posts.map(
-            (post: {
-              _id: Key | null | undefined;
-              title:
-                | string
-                | number
-                | boolean
-                | ReactElement<any, string | JSXElementConstructor<any>>
-                | ReactFragment
-                | ReactPortal
-                | null
-                | undefined;
-              body: {
-                children: {
-                  text:
-                    | string
-                    | number
-                    | boolean
-                    | ReactElement<any, string | JSXElementConstructor<any>>
-                    | ReactFragment
-                    | ReactPortal
-                    | null
-                    | undefined;
-                }[];
-              };
-              mainImage: {
-                asset: {
-                  _ref: string;
-                };
-              }[];
-            }) => {
-              const { title, body, mainImage } = post;
-
-              return (
-                <div className={""} key={post._id}>
-                  {body && (
-                    <>
-                      <img
-                        src={urlFor(mainImage).width(400).height(300).url()}
-                        style={{ objectFit: "contain", borderRadius: "4px" }}
+        <div className="flex lg:justify-between mt-4 lg:flex-row flex-col gap-7 justify-center">
+          {posts.map((post: Post) => {
+            const { title, body, mainImage, slug } = post;
+            return (
+              <div key={post._id}>
+                {body && (
+                  <Link href={`/post/${slug.current}`}>
+                    <div className="relative flex-1 h-96 lg:min-w-[500px]">
+                      <Image
+                        src={urlFor(mainImage).url()}
+                        alt={`${title}`}
+                        fill
+                        style={{ objectFit: "cover", overflow: "hidden" }}
+                        className="rounded"
+                        priority={true}
                       />
+                    </div>
 
-                      <h3 className="text-xl font-bold mt-2">{title}</h3>
-                      <p>{body[0].children[0].text}</p>
-                    </>
-                  )}
-                </div>
-              );
-            },
-          )}
+                    <h3 className="text-xl font-bold mt-2">{title}</h3>
+                    <p>{body[0].children[0].text}</p>
+                  </Link>
+                )}
+              </div>
+            );
+          })}
         </div>
       </main>
-      <footer className="h-36 bg-[#fafafa]">
-        <div className="max-w-[1200px] m-auto p-7">
-          <p className="text-xl">let's stay connected!</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 };
