@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["cdn.sanity.io"],
+    domains: ["cdn.sanity.io", "images.unsplash.com"],
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if

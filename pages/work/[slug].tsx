@@ -1,20 +1,17 @@
 import client from "../../client";
-import { Post } from "../../types";
+import { Project } from "../../types";
 import Nav from "../../components/Nav";
 import { urlFor } from "../../utils";
 import Image from "next/image";
 import Footer from "../../components/Footer";
 import Head from "next/head";
+import Link from "next/link";
+import { AiOutlineGithub } from "react-icons/ai";
 
-const Post = ({ post }: { post: Post }) => {
-  if (!post) return <div>Loading...</div>;
-  const { title, body, imageUrl, name, createdAt } = post;
-  const date = new Date(createdAt);
-  const year = date.getFullYear();
-  const month = date.toLocaleString("default", { month: "long" });
-  const day = date.getDate();
-
-  console.log(body);
+const Project = ({ project }: { project: Project }) => {
+  if (!project) return <div>Loading...</div>;
+  const { title, body, mainImage, github } = project;
+  console.log(github, "git");
   return (
     <>
       <Head>
@@ -22,8 +19,8 @@ const Post = ({ post }: { post: Post }) => {
         <meta
           name="description"
           content={
-            (post &&
-              post.body?.length > 0 &&
+            (project &&
+              project.body?.length > 0 &&
               body[0]?.children[0].text.substring(0, 100)) ||
             title
           }
@@ -32,26 +29,23 @@ const Post = ({ post }: { post: Post }) => {
         <meta
           property="og:description"
           content={
-            (post &&
-              post.body?.length > 0 &&
+            (project &&
+              project.body?.length > 0 &&
               body[0]?.children[0].text.substring(0, 100)) ||
             title
           }
         />
-        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image" content={urlFor(mainImage).url()} />
       </Head>
       <main className={"max-w-screen-xl m-auto p-6 min-h-[88vh]"}>
         <Nav />
         <article className={"mt-10 mb-20"}>
           <div className="mb-6">
             <h1 className="text-3xl font-bold mb-2">{title}</h1>
-            <p>
-              Published on {month} {day}, {year} by {name}
-            </p>
           </div>
           <div className="flex flex-col m-auto mb-10">
             <Image
-              src={imageUrl}
+              src={urlFor(mainImage).url()}
               alt={`${title}`}
               width={500}
               height={300}
@@ -67,6 +61,12 @@ const Post = ({ post }: { post: Post }) => {
                 {block.children[0].text}
               </p>
             ))}
+          <Link href={github} target="_blank">
+            <div className="mt-5 font-bold text-lg flex gap-2">
+              <p>Code</p>
+              <AiOutlineGithub size={30} color="gray" />
+            </div>
+          </Link>
         </article>
       </main>
       <Footer />
@@ -99,27 +99,26 @@ export async function getStaticProps(context: {
   // * = select all docs
   // filter by type = post and find post that have the same slug
   // we have in the params
-  const post = await client.fetch(
+  const project = await client.fetch(
     `
-    *[_type == "post" && slug.current == $slug][0]
+    *[_type == "project" && slug.current == $slug][0]
      { 
-      mainImage,
       imageUrl,
+      mainImage,
       title, 
-      "name": author->name,
-      "categories": categories[]->title,
       body,
      slug,
-     'createdAt': _createdAt
+     github
+    
     }
   `,
     { slug },
   );
   return {
     props: {
-      post,
+      project,
     },
   };
 }
 
-export default Post;
+export default Project;

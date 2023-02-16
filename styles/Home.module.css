@@ -203,3 +203,10 @@
     height: 300px;
   }
 }
+
+.btn {
+  height: 50px;
+  width: 200px;
+  border-radius: 10px;
+  border: 1px solid black;
+}

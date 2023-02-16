@@ -65,3 +65,14 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.btn {
+  height: 50px;
+  max-width: 250px;
+  min-width: 250px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 5px 5px 5px;
+}
+.work {
+  background-color: #f5f3f3;
+}
