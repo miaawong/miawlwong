@@ -11,7 +11,7 @@ import { AiOutlineGithub } from "react-icons/ai";
 const Project = ({ project }: { project: Project }) => {
   if (!project) return <div>Loading...</div>;
   const { title, body, mainImage, github } = project;
-  console.log(github, "git");
+
   return (
     <>
       <Head>

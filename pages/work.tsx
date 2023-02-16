@@ -9,7 +9,6 @@ import { urlFor } from "../utils";
 import Link from "next/link";
 
 const work = ({ projects }: { projects: Project[] }) => {
-  console.log(projects);
   return (
     <>
       <Head>

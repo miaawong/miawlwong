@@ -55,7 +55,7 @@ const Home = ({ posts }: { posts: Post[] }) => {
               When I&apos;m not building new features or fixing bugs,
               you&apos;ll likely find me outside skiing, hiking, or traveling.{" "}
             </p>
-            <div className="mt-5 flex justify-between gap-2">
+            <div className="mt-10 flex justify-between gap-2">
               <a
                 href="https://tiktok.com/@miawlwong"
                 target="_blank"

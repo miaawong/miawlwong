@@ -14,7 +14,6 @@ const Post = ({ post }: { post: Post }) => {
   const month = date.toLocaleString("default", { month: "long" });
   const day = date.getDate();
 
-  console.log(body);
   return (
     <>
       <Head>
