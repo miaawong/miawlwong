@@ -11,7 +11,7 @@ import { AiOutlineGithub } from "react-icons/ai";
 const Project = ({ project }: { project: Project }) => {
   if (!project) return <div>Loading...</div>;
   const { title, body, github } = project;
-  const mainImage = project.mainImage;
+  const mainImage = project?.mainImage;
 
   return (
     <>
@@ -36,7 +36,7 @@ const Project = ({ project }: { project: Project }) => {
             title
           }
         />
-        <meta property="og:image" content={urlFor(mainImage).url()} />
+        {/* <meta property="og:image" content={urlFor(mainImage).url()} /> */}
       </Head>
       <main className={"max-w-screen-xl m-auto p-6 min-h-[88vh]"}>
         <Nav />
@@ -51,15 +51,17 @@ const Project = ({ project }: { project: Project }) => {
             ))}
           <article className="flex sm:flex-col lg:flex-row lg:gap-5 mt-10">
             <div className="flex flex-col mb-10 flex-1">
-              <Image
-                src={urlFor(mainImage).url()}
-                alt={`${title}`}
-                width={500}
-                height={300}
-                className="m-auto rounded w-[100%] max-h-[700px] object-cover"
-                quality="100"
-                priority={true}
-              />
+              {mainImage && (
+                <Image
+                  src={urlFor(mainImage).url()}
+                  alt={`${title}`}
+                  width={500}
+                  height={300}
+                  className="m-auto rounded w-[100%] max-h-[700px] object-cover"
+                  quality="100"
+                  priority={true}
+                />
+              )}
             </div>
 
             <div className="min-w-[230px] mt-5 font-bold text-lg flex flex-col underline gap-2">
