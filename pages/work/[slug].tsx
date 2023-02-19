@@ -66,9 +66,11 @@ const Project = ({ project }: { project: Project }) => {
 
             <div className="min-w-[230px] mt-5 font-bold text-lg flex flex-col underline gap-2">
               <p>the code</p>
-              <Link href={project?.github} target="_blank">
-                <AiOutlineGithub size={30} color="gray" />
-              </Link>
+              {project?.github && (
+                <Link href={project?.github} target="_blank">
+                  <AiOutlineGithub size={30} color="gray" />
+                </Link>
+              )}
             </div>
           </article>
         </section>
