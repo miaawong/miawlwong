@@ -40,21 +40,8 @@ const Project = ({ project }: { project: Project }) => {
       </Head>
       <main className={"max-w-screen-xl m-auto p-6 min-h-[88vh]"}>
         <Nav />
-        <article className={"mt-10 mb-20"}>
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">{title}</h1>
-          </div>
-          <div className="flex flex-col m-auto mb-10">
-            <Image
-              src={urlFor(mainImage).url()}
-              alt={`${title}`}
-              width={500}
-              height={300}
-              className="m-auto rounded w-[100%] lg:w-[80%] max-h-[700px] object-cover"
-              quality="100"
-              priority={true}
-            />
-          </div>
+        <section className={"mt-10 mb-20"}>
+          <h1 className="text-3xl font-bold mb-2">{title}</h1>
           {body &&
             body.length > 0 &&
             body.map((block, i) => (
@@ -62,13 +49,27 @@ const Project = ({ project }: { project: Project }) => {
                 {block.children[0].text}
               </p>
             ))}
-          <Link href={github} target="_blank">
-            <div className="mt-5 font-bold text-lg flex gap-2">
-              <p>Code</p>
-              <AiOutlineGithub size={30} color="gray" />
+          <article className="flex sm:flex-col lg:flex-row lg:gap-5 mt-10">
+            <div className="flex flex-col mb-10 flex-1">
+              <Image
+                src={urlFor(mainImage).url()}
+                alt={`${title}`}
+                width={500}
+                height={300}
+                className="m-auto rounded w-[100%] max-h-[700px] object-cover"
+                quality="100"
+                priority={true}
+              />
             </div>
-          </Link>
-        </article>
+
+            <div className="min-w-[230px] mt-5 font-bold text-lg flex flex-col underline gap-2">
+              <p>the code</p>
+              <Link href={github} target="_blank">
+                <AiOutlineGithub size={30} color="gray" />
+              </Link>
+            </div>
+          </article>
+        </section>
       </main>
       <Footer />
     </>
