@@ -10,7 +10,7 @@ import { AiOutlineGithub } from "react-icons/ai";
 
 const Project = ({ project }: { project: Project }) => {
   if (!project) return <div>Loading...</div>;
-  const { title, body, github } = project;
+  const { title, body } = project;
   const mainImage = project?.mainImage;
 
   return (
@@ -66,7 +66,7 @@ const Project = ({ project }: { project: Project }) => {
 
             <div className="min-w-[230px] mt-5 font-bold text-lg flex flex-col underline gap-2">
               <p>the code</p>
-              <Link href={github} target="_blank">
+              <Link href={project?.github} target="_blank">
                 <AiOutlineGithub size={30} color="gray" />
               </Link>
             </div>
