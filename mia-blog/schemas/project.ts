@@ -49,12 +49,12 @@ export default defineType({
       title: 'Image URL',
       type: 'url',
     }),
-    defineField({
-      name: 'technologies',
-      title: 'technologies',
-      type: 'array',
-      of: [{type: 'reference', to: {type: 'technology'}}],
-    }),
+    // defineField({
+    //   name: 'technologies',
+    //   title: 'technologies',
+    //   type: 'array',
+    //   of: [{type: 'reference', to: {type: 'technology'}}],
+    // }),
   ],
 
   preview: {
