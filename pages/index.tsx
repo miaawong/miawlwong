@@ -100,7 +100,7 @@ const Home = ({ posts }: { posts: Post[] }) => {
           </div>
         </div>
 
-        <div className="flex gap-16 flex-col lg:flex-row">
+        <div className="flex gap-16 flex-col lg:flex-row mt-4">
           <div className="mb-4">
             <h1 className="text-3xl font-bold mb-4">my desk setup</h1>
             <Link href={`/links`}>
