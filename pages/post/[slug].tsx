@@ -59,13 +59,15 @@ const Post = ({ post }: { post: Post }) => {
               priority={true}
             />
           </div>
-          {body &&
-            body.length > 0 &&
-            body.map((block, i) => (
-              <p key={i} className="mb-2">
-                {block.children[0].text}
-              </p>
-            ))}
+          <div className="max-w-[800px] m-auto">
+            {body &&
+              body.length > 0 &&
+              body.map((block, i) => (
+                <p key={i} className="mb-2">
+                  {block.children[0].text}
+                </p>
+              ))}
+          </div>
         </article>
       </main>
       <Footer />

@@ -1,13 +1,12 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import client from "../client";
 import groq from "groq";
 import { Post } from "../types";
 import Nav from "../components/Nav";
 import Link from "next/link";
 import Footer from "../components/Footer";
-
+import { urlFor } from "../utils";
 import {
   AiFillGithub,
   AiOutlineInstagram,
@@ -28,18 +27,17 @@ const Home = ({ posts }: { posts: Post[] }) => {
       </Head>
       <main className={"max-w-screen-xl m-auto px-6 pt-10 pb-20"}>
         <Nav />
-        <div className="flex flex-col lg:flex-row justify-center lg:justify-between my-10 relative h-[900px] lg:h-[700px]">
-          <div className="w-full lg:w-3/6 h-full relative">
-            <Image
-              src={"/mia.jpeg"}
-              alt="Picture of Mia hiking in Arizona"
-              fill
-              sizes={"100vh"}
-              style={{ objectFit: "contain" }}
-              priority={true}
-              className="rounded"
-            />
-          </div>
+
+        <div className="flex flex-col lg:flex-row justify-center lg:justify-between mt-8 relative h-[700px] lg:h-[700px] ">
+          <Image
+            src={"/mia.jpeg"}
+            alt="Picture of Mia in Bryce Canyon"
+            height="250"
+            width="250"
+            priority={true}
+            className="h-[200] w-[200] lg:min-h-[400px] lg:max-h-[600px] lg:w-auto rounded mx-auto mt-4 lg:m-0"
+          />
+
           <div className="w-full lg:w-3/6 md:px-6 my-10 lg:ml-5 lg:my-6 flex flex-col lg:items-end justify-center lg:text-end">
             <p className="text-3xl font-bold">Hi! My name is Mia.</p>
             <p className="text-3xl mt-2">Software Engineer, Adventure Seeker</p>
@@ -102,32 +100,54 @@ const Home = ({ posts }: { posts: Post[] }) => {
           </div>
         </div>
 
-        <h1 className="text-3xl font-bold">recent posts</h1>
-        <div className="flex lg:justify-between mt-4 lg:flex-row flex-col gap-7 justify-center">
-          {posts.map((post: Post) => {
-            const { title, body, slug, imageUrl } = post;
-            return (
-              <div key={post._id}>
-                {body && (
-                  <Link href={`/post/${slug.current}`}>
-                    <div className="relative flex-1 h-96 lg:min-w-[500px]">
-                      <Image
-                        src={imageUrl}
-                        alt={`${title}`}
-                        fill
-                        style={{ objectFit: "cover", overflow: "hidden" }}
-                        className="rounded"
-                        priority={true}
-                      />
-                    </div>
-
-                    <h3 className="text-xl font-bold my-4">{title}</h3>
-                    <p>{body[0].children[0].text}</p>
-                  </Link>
-                )}
+        <div className="flex gap-16 flex-col lg:flex-row">
+          <div className="mb-4">
+            <h1 className="text-3xl font-bold mb-4">my desk setup</h1>
+            <Link href={`/links`}>
+              <div className="relative flex-1 h-[200px]  lg:min-w-[300px]">
+                <Image
+                  src={"/desk.jpeg"}
+                  alt="Mia's desk setup"
+                  fill
+                  style={{ objectFit: "cover", overflow: "hidden" }}
+                  className="rounded"
+                  priority={true}
+                />
               </div>
-            );
-          })}
+            </Link>
+          </div>
+
+          <div>
+            <h1 className="text-3xl font-bold">recent posts</h1>
+            <div className="flex mt-4 lg:flex-row flex-col gap-16 mb-10">
+              {posts.map((post: Post) => {
+                const { title, body, slug, imageUrl } = post;
+                return (
+                  <div key={post._id} className="lg:max-w-[300px]">
+                    {body && (
+                      <Link href={`/post/${slug.current}`}>
+                        <div className="relative flex-1 h-[200px] lg:min-w-[300px] ">
+                          <Image
+                            src={imageUrl || urlFor(post.mainImage).url()}
+                            alt={`${title}`}
+                            fill
+                            style={{ objectFit: "cover", overflow: "hidden" }}
+                            className="rounded"
+                            priority={true}
+                          />
+                        </div>
+
+                        <h3 className="text-xl font-bold my-4 underline">
+                          {title}
+                        </h3>
+                        <p>{body[0].children[0].text}</p>
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </main>
       <Footer />

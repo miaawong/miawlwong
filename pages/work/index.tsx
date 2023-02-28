@@ -1,12 +1,13 @@
 import React from "react";
-import Nav from "../components/Nav";
+import Nav from "../../components/Nav";
 import Head from "next/head";
-import client from "../client";
+import client from "../../client";
 import groq from "groq";
-import { Project } from "../types";
+import { Project } from "../../types";
 import Image from "next/image";
-import { urlFor } from "../utils";
+import { urlFor } from "../../utils";
 import Link from "next/link";
+import Footer from "../../components/Footer";
 
 const work = ({ projects }: { projects: Project[] }) => {
   return (
@@ -19,13 +20,13 @@ const work = ({ projects }: { projects: Project[] }) => {
       </Head>
       <main className={"max-w-screen-xl m-auto px-6 pt-10 pb-20"}>
         <Nav />
-        <div className={"mt-10 flex justify-center"}>
+        <div className={"mt-10 flex"}>
           {projects.map((project) => {
             const { title, body, _id, mainImage, slug } = project;
             return (
               <div
                 key={_id}
-                className="flex rounded-lg flex-col max-w-[500px] work p-6"
+                className="flex rounded-lg flex-col max-w-[500px] p-6"
               >
                 <Link href={`/work/${slug.current}`}>
                   <Image
@@ -38,7 +39,9 @@ const work = ({ projects }: { projects: Project[] }) => {
                     priority={true}
                   />
                   <div>
-                    <h1 className="font-bold my-4 text-2xl">{title}</h1>
+                    <h1 className="font-bold my-4 text-2xl underline">
+                      {title}
+                    </h1>
                     <p>{body[0].children[0].text}</p>
                   </div>
                 </Link>
@@ -47,6 +50,7 @@ const work = ({ projects }: { projects: Project[] }) => {
           })}
         </div>
       </main>
+      <Footer />
     </>
   );
 };

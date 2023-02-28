@@ -9,9 +9,9 @@ import { FaTiktok } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="h-36 bg-[#fafafa]">
-      <div className="flex justify-between max-w-screen-xl m-auto p-7">
-        <p className="text-xl font-bold">Let&apos;s stay connected!</p>
+    <footer className="mt-[-100px] bg-[#fafafa] p-10">
+      <div className="flex justify-between items-center max-w-screen-xl m-auto ">
+        <p className="text-xl font-bold">Mia Wong</p>
 
         <div className="flex justify-between gap-2">
           <a
@@ -19,42 +19,43 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTiktok size={26} color={"grey"} />
+            <FaTiktok size={20} color={"grey"} />
           </a>
           <a
             href="https://instagram.com/miawlwong"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <AiOutlineInstagram size={30} color={"grey"} />
+            <AiOutlineInstagram size={20} color={"grey"} />
           </a>
           <a
             href="https://youtube.com/@miawlwong"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <AiOutlineYoutube size={30} color={"grey"} />
+            <AiOutlineYoutube size={20} color={"grey"} />
           </a>
+
           <a
             href="https://github.com/miaawong"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <AiFillGithub size={30} color={"grey"} />
+            <AiFillGithub size={20} color={"grey"} />
           </a>
           <a
             href="https://linkedin.com/in/miawailamwong"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <AiOutlineLinkedin size={30} color={"grey"} />
+            <AiOutlineLinkedin size={20} color={"grey"} />
           </a>
           <a
             href="mailto:miawlwong@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <AiOutlineMail size={30} color={"grey"} />
+            <AiOutlineMail size={20} color={"grey"} />
           </a>
         </div>
       </div>

@@ -55,8 +55,8 @@ const Project = ({ project }: { project: Project }) => {
                 <Image
                   src={urlFor(mainImage).url()}
                   alt={`${title}`}
-                  width={500}
-                  height={300}
+                  width={300}
+                  height={200}
                   className="m-auto rounded w-[100%] max-h-[700px] object-cover"
                   quality="100"
                   priority={true}
@@ -75,7 +75,6 @@ const Project = ({ project }: { project: Project }) => {
           </article>
         </section>
       </main>
-      <Footer />
     </>
   );
 };

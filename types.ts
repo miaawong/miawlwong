@@ -23,3 +23,13 @@ export interface Project {
   demo: string;
   imageUrl: string;
 }
+
+export interface Link {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  mainImage: { asset: { _ref: string } };
+  publishedAt: string;
+  body: { children: { text: string }[] }[];
+  url: string;
+}
