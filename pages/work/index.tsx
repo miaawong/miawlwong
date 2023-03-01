@@ -13,41 +13,45 @@ const work = ({ projects }: { projects: Project[] }) => {
   return (
     <>
       <Head>
-        <title>Mia Wong</title>
-        <meta name="description" content="Adventures of a coder" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>projects</title>
+        <meta name="description" content={"my projects"} />
+        <meta property="og:title" content={"my projects"} />
+        <meta property="og:description" content={"my projects"} />
       </Head>
       <main className={"max-w-screen-xl m-auto px-6 pt-10 pb-20"}>
         <Nav />
-        <div className={"mt-10 flex"}>
-          {projects.map((project) => {
-            const { title, body, _id, mainImage, slug } = project;
-            return (
-              <div
-                key={_id}
-                className="flex rounded-lg flex-col max-w-[500px] p-6"
-              >
-                <Link href={`/work/${slug.current}`}>
-                  <Image
-                    src={urlFor(mainImage).url()}
-                    alt={`${title}`}
-                    width={500}
-                    height={500}
-                    style={{ objectFit: "cover", overflow: "hidden" }}
-                    className="rounded"
-                    priority={true}
-                  />
-                  <div>
-                    <h1 className="font-bold my-4 text-2xl underline">
-                      {title}
-                    </h1>
-                    <p>{body[0].children[0].text}</p>
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
+        <div className="mt-10">
+          <h1 className="text-2xl font-bold mb-4">projects</h1>
+
+          <div className="flex">
+            {projects.map((project) => {
+              const { title, body, _id, mainImage, slug } = project;
+              return (
+                <div
+                  key={_id}
+                  className="flex rounded-lg flex-col max-w-[500px] p-6"
+                >
+                  <Link href={`/work/${slug.current}`}>
+                    <Image
+                      src={urlFor(mainImage).url()}
+                      alt={`${title}`}
+                      width={500}
+                      height={500}
+                      style={{ objectFit: "cover", overflow: "hidden" }}
+                      className="rounded"
+                      priority={true}
+                    />
+                    <div>
+                      <h1 className="font-bold my-4 text-2xl underline">
+                        {title}
+                      </h1>
+                      <p>{body[0].children[0].text}</p>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </main>
       <Footer />

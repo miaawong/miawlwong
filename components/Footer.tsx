@@ -9,7 +9,7 @@ import { FaTiktok } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="mt-[-100px] bg-[#fafafa] p-10">
+    <footer className="bg-[#fafafa] p-10">
       <div className="flex justify-between items-center max-w-screen-xl m-auto ">
         <p className="text-xl font-bold">Mia Wong</p>
 

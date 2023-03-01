@@ -31,5 +31,5 @@ export interface Link {
   mainImage: { asset: { _ref: string } };
   publishedAt: string;
   body: { children: { text: string }[] }[];
-  url: string;
+  url?: string;
 }

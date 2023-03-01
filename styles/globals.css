@@ -87,7 +87,7 @@ a {
   box-shadow: 5px 5px 5px;
 }
 .work {
-  background-color: #f5f3f3;
+  border: 1px solid black;
 }
 
 main {
