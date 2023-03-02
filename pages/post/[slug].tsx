@@ -50,7 +50,7 @@ const Post = ({ post }: { post: Post }) => {
           </div>
           <div className="flex flex-col m-auto mb-10">
             <Image
-              src={imageUrl}
+              src={imageUrl || urlFor(post.mainImage).url()}
               alt={`${title}`}
               width={500}
               height={300}
