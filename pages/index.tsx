@@ -15,6 +15,7 @@ import {
   AiOutlineMail,
 } from "react-icons/ai";
 import { FaTiktok } from "react-icons/fa";
+import mia from "../public/mia.jpeg";
 
 const Home = ({ posts }: { posts: Post[] }) => {
   return (
@@ -30,7 +31,7 @@ const Home = ({ posts }: { posts: Post[] }) => {
 
         <div className="flex flex-col lg:flex-row justify-center lg:justify-between mt-8 relative h-[700px] lg:h-[700px] ">
           <Image
-            src={"/mia.jpeg"}
+            src={mia}
             alt="Picture of Mia in Bryce Canyon"
             height="250"
             width="250"
